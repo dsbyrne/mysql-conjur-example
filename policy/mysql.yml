@@ -1,0 +1,16 @@
+---
+- !policy
+  id: mysql
+  body:
+    - &variables
+      - !variable username
+      - !variable password
+
+    - !layer
+      annotations:
+        description: Hosts in this layer can read the MySQL username/password
+
+    - !permit
+      role: !layer
+      privilege: [ read, execute ]
+      resource: *variables
